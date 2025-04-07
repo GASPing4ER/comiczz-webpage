@@ -1,11 +1,5 @@
 import { IFComic } from "@/types/marvel";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 import Image from "next/image";
 import { getLowestPrice, getReleaseYear } from "@/lib/utils";
 
@@ -31,7 +25,6 @@ const ComicDetailsPopup = ({ comic }: ComicDetailsPopupProps) => {
           <DialogTitle className="text-[17px] font-bold">
             {comic.title}
           </DialogTitle>
-          <DialogDescription></DialogDescription>
           <div className="text-[15px] flex flex-col gap-2">
             <p>
               <strong>Year of release:</strong> {getReleaseYear(comic.dates)}
