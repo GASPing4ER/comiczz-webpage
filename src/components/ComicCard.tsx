@@ -1,5 +1,7 @@
 import { IFComic } from "@/types/marvel";
 import Image from "next/image";
+import { ComicDetailsPopup } from "@/components";
+import { getLowestPrice } from "@/lib/utils";
 
 type ComicCardProps = {
   comic: IFComic;
@@ -18,10 +20,10 @@ const ComicCard = ({ comic }: ComicCardProps) => {
         <h2 className="font-bold text-[15px] line-clamp-2">{comic.title}</h2>
       </div>
       <div className="flex flex-col gap-[9px] w-full">
-        <p className="text-[19px] font-bold">{comic.prices[0].price} €</p>
-        <button className="bg-[#DD2C2C] text-white font-bold text-[17px] p-[5px] rounded-[5px] w-full cursor-pointer">
-          More info
-        </button>
+        <p className="text-[19px] font-bold">
+          {getLowestPrice(comic.prices)} €
+        </p>
+        <ComicDetailsPopup comic={comic} />
       </div>
     </div>
   );
