@@ -14,3 +14,22 @@ export const getLowestPrice = (prices?: IFComic["prices"]): number | null => {
 
   return sortedPrices[0].price;
 };
+
+export const getReleaseYear = (dates: IFComic["dates"]) => {
+  const dateTypesToTry = [
+    "onsaleDate", // Primary preferred date
+    "focDate", // Final order cutoff date
+    "unlimitedDate", // Marvel Unlimited release
+    "digitalPurchaseDate", // Digital release
+    dates[0]?.type, // Any available date as last resort
+  ].filter(Boolean); // Remove undefined values
+
+  for (const dateType of dateTypesToTry) {
+    const dateObj = dates.find((d) => d.type === dateType);
+    if (dateObj?.date) {
+      return new Date(dateObj.date).getFullYear().toString();
+    }
+  }
+
+  return "Year unknown"; // Final fallback
+};
