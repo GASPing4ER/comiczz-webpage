@@ -8,7 +8,7 @@ type ComicCardProps = {
 };
 const ComicCard = ({ comic }: ComicCardProps) => {
   return (
-    <div className="w-[207px] h-[395px] border-2 border-black flex flex-col items-center justify-between py-[12px] px-[21px] text-center">
+    <div className="w-[207px] h-[395px] border-2 border-black rounded-[5px] flex flex-col items-center justify-between py-[12px] px-[21px] text-center">
       <div className="flex flex-col gap-[9px]">
         <Image
           src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
