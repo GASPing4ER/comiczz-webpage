@@ -8,6 +8,19 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
+const LoadingSpinner = () => (
+  <div className="w-10 h-10 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
+);
+
+const RetryButton = ({ onClick }: { onClick: () => void }) => (
+  <button
+    onClick={onClick}
+    className="ml-4 px-4 py-2 bg-red-500 text-white rounded"
+  >
+    Retry
+  </button>
+);
+
 export default function Home() {
   const { format } = useFilter();
   const { comics, loading, error, loadMore, loadingMore } = useComics(format);
@@ -22,14 +35,6 @@ export default function Home() {
       loadMore();
     }
   }, [inView, loadingMore, loadMore]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-10">
-        <div className="w-10 h-10 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -50,19 +55,37 @@ export default function Home() {
       <p className="text-[#828282] font-bold text-[18px] -ml-10">
         Home - {FORMATS.find((f) => f.value === format)?.label}
       </p>
-      {comics.length === 0 ? (
+
+      {/* Loading state */}
+      {loading && (
+        <div className="flex justify-center items-center py-10">
+          <LoadingSpinner />
+        </div>
+      )}
+
+      {/* Error state */}
+      {error && (
+        <div className="text-center py-8 text-red-500">
+          {error}
+          <RetryButton onClick={() => router.refresh()} />
+        </div>
+      )}
+
+      {/* No comics found */}
+      {comics.length === 0 && !loading && !error && (
         <p className="text-center">No comics found</p>
-      ) : (
+      )}
+
+      {/* Comics Grid */}
+      {comics.length > 0 && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[18px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {comics.map((comic) => (
               <ComicCard key={comic.id} comic={comic} />
             ))}
           </div>
           <div ref={ref} className="flex justify-center items-center py-10">
-            {loadingMore && (
-              <div className="w-10 h-10 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
-            )}
+            {loadingMore && <LoadingSpinner />}
           </div>
         </>
       )}

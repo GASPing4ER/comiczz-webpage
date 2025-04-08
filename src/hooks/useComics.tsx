@@ -35,6 +35,7 @@ const useComics = (format: string) => {
   useEffect(() => {
     const getComics = async () => {
       try {
+        setComics([]);
         setLoading(true);
         setError(null);
         const res = await fetchComics(0, 20, format);

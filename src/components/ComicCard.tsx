@@ -12,7 +12,7 @@ const ComicCard = ({ comic }: ComicCardProps) => {
   const price = getLowestPrice(prices);
 
   return (
-    <div className="w-[207px] h-[395px] border-2 border-black rounded-[5px] flex flex-col items-center justify-between p-4 text-center">
+    <div className="w-[207px] h-[395px] border-2 border-black rounded-[5px] flex flex-col items-center justify-between py-4 px-[21px] text-center">
       <div className="flex flex-col gap-2">
         <Image
           src={`${thumbnail.path}.${thumbnail.extension}`}
