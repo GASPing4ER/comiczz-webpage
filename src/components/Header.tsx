@@ -3,22 +3,26 @@
 import { FORMATS } from "@/constants";
 import { useFilter } from "@/hooks/useFilter";
 import Image from "next/image";
+import clsx from "clsx";
 
 const Header = () => {
   const { format: activeFormat, setFormat } = useFilter();
+
   return (
-    <header className="bg-black text-white py-[23px] px-[250px]">
-      <div className="flex items-center gap-[60px]">
+    <header className="bg-black text-white py-6 px-8 max-w-screen-xl mx-auto">
+      <div className="flex items-center justify-between">
         <Image src="/logo.svg" width={84} height={72} alt="comiczz logo" />
         <nav>
-          <ul className="flex space-x-[60px]">
+          <ul className="flex space-x-12">
             {FORMATS.map((format) => (
               <li key={format.value}>
                 <button
                   onClick={() => setFormat(format.value)}
-                  className={`${
-                    activeFormat === format.value ? "text-[#DD2C2C]" : ""
-                  } nav-item`}
+                  className={clsx(
+                    "nav-item",
+                    activeFormat === format.value && "text-red-600"
+                  )}
+                  aria-label={`Select ${format.label}`}
                 >
                   {format.label}
                 </button>
