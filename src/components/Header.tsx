@@ -18,12 +18,12 @@ const Header = () => {
 
   return (
     <header className="bg-black text-white py-[23px] px-[20px] lg:px-[250px] relative">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center md:justify-baseline gap-12">
         <Image src="/logo.svg" width={84} height={72} alt="comiczz logo" />
 
         {/* Hamburger icon for mobile */}
         <button
-          className="lg:hidden text-white"
+          className="ml-auto lg:hidden text-white"
           onClick={toggleMobileMenu}
           aria-label="Toggle navigation menu"
         >
