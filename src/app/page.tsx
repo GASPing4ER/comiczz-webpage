@@ -34,7 +34,6 @@ export default function Home() {
   if (error) {
     return (
       <div className="text-center py-8 text-red-500">
-        git reset --soft HEAD~1
         {error}
         <button
           onClick={() => router.refresh()}
