@@ -23,10 +23,10 @@ const useComics = (format: string) => {
         return [...prev, ...filteredNewComics];
       });
 
-      setOffset((prev) => prev + 20);
+      setOffset((prevOffset) => prevOffset + 20);
     } catch (err) {
-      console.error("Load more error:", err); // Log the full error
       setError("Failed to load more comics");
+      console.error("Load more error:", err); // Log the full error
     } finally {
       setLoadingMore(false);
     }
@@ -40,7 +40,6 @@ const useComics = (format: string) => {
         setError(null);
         const res = await fetchComics(0, 20, format);
         setComics(res.data.results);
-        console.log(res.data.results);
       } catch (err) {
         setError("Failed to load comics. Please try again later.");
         console.error("Error fetching comics:", err);
