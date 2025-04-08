@@ -1,16 +1,31 @@
 # Gašper Šimec
 
-## Requirements Not Implemented:
+## ✅ Requirements Not Implemented
 
-- All requirements were implemented.
+- All specified requirements were successfully implemented.
 
-## Issues Faced During Implementation:
+## ⚠️ Challenges Encountered
 
-**Server Side API Fetching**: I initially wanted to fetch Marvel comics through server side rendering, but due to marvel's website crashing when authenticating me, I couldn't get a private key. I implemented serverFetching function anyway to simulate how I would sign via SSR.
+**Marvel API Server-Side Authentication:**  
+While attempting to implement server-side fetching of Marvel comics, I encountered issues with Marvel's developer portal—specifically, I was unable to retrieve a private key due to authentication problems on their website. Despite this, I implemented the `fetchComicsServer` function to demonstrate how server-side signed requests would be handled under normal conditions.
 
-## Install:
+## 🚀 Getting Started
 
-- Clone this repository.
-- In terminal run npm install
-- Afterwards run npm run dev
-- Keep in mind that you need .env and inside it NEXT_PUBLIC_API_PUBLIC_KEY from Marvel
+### 1. Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/GASPing4ER/comiczz-webpage.git
+
+2. Install dependencies:
+   ```bash
+   npm install
+
+3. Start the development server:
+   ```bash
+   npm run dev
+
+### 2. Environment Variables
+Before running the application, create a .env file in the root directory and add your Marvel public API key:
+  ```ini
+NEXT_PUBLIC_MARVEL_PUBLIC_KEY=your_public_key_here
