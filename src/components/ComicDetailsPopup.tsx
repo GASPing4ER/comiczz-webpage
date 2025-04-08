@@ -1,13 +1,17 @@
+"use client";
+
 import { IFComic } from "@/types/marvel";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 import Image from "next/image";
 import { getLowestPrice, getReleaseYear } from "@/lib/utils";
+import { useState } from "react";
 
 type ComicDetailsPopupProps = {
   comic: IFComic;
 };
 
 const ComicDetailsPopup = ({ comic }: ComicDetailsPopupProps) => {
+  const [isOpen, setIsOpen] = useState(false);
   const {
     thumbnail,
     title,
@@ -36,9 +40,18 @@ const ComicDetailsPopup = ({ comic }: ComicDetailsPopupProps) => {
     );
   };
 
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <Dialog>
-      <DialogTrigger className="comic-button w-full">More info</DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger
+        onClick={() => setIsOpen(true)}
+        className="comic-button w-full"
+      >
+        More info
+      </DialogTrigger>
       <DialogContent className="bg-white w-[643px] min-h-[270px] flex gap-4 p-6">
         <div className="flex-shrink-0 -ml-2 self-center">
           <Image
@@ -75,7 +88,9 @@ const ComicDetailsPopup = ({ comic }: ComicDetailsPopupProps) => {
             <span className="text-lg font-bold">
               {getLowestPrice(prices)} €
             </span>
-            <button className="comic-button w-[140px]">Close</button>
+            <button onClick={handleClose} className="comic-button w-[140px]">
+              Close
+            </button>
           </div>
         </div>
       </DialogContent>
