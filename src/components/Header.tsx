@@ -9,7 +9,7 @@ const Header = () => {
   const { format: activeFormat, setFormat } = useFilter();
 
   return (
-    <header className="bg-black text-white py-6 px-8 max-w-screen-xl mx-auto">
+    <header className="bg-black text-white py-[23px] px-[250px]">
       <div className="flex items-center justify-between">
         <Image src="/logo.svg" width={84} height={72} alt="comiczz logo" />
         <nav>
