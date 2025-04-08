@@ -40,15 +40,23 @@ const ComicDetailsPopup = ({ comic }: ComicDetailsPopupProps) => {
             {comic.characters.items.length > 0 && (
               <p className="line-clamp-1">
                 <strong>Characters: </strong>
-                {comic.characters.items.map(
-                  (character) => `${character.name}, `
-                )}
+                {comic.characters.items.map((character, i) => (
+                  <span key={character.name}>
+                    {character.name}
+                    {i < comic.characters.items.length - 1 ? ", " : ""}
+                  </span>
+                ))}
               </p>
             )}
             {comic.creators.items.length > 0 && (
               <p className="line-clamp-1">
                 <strong>Creators:</strong>{" "}
-                {comic.creators.items.map((character) => `${character.name}, `)}
+                {comic.creators.items.map((creator, i) => (
+                  <span key={creator.name}>
+                    {creator.name}
+                    {i < comic.creators.items.length - 1 ? ", " : ""}
+                  </span>
+                ))}
               </p>
             )}
             {comic.diamondCode && (
