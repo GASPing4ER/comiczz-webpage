@@ -17,10 +17,8 @@ const Header = () => {
                 <button
                   onClick={() => setFormat(format.value)}
                   className={`${
-                    activeFormat === format.value
-                      ? "text-red-500"
-                      : "hover:text-red-500"
-                  } cursor-pointer text-[18px] font-bold`}
+                    activeFormat === format.value ? "text-[#DD2C2C]" : ""
+                  } nav-item`}
                 >
                   {format.label}
                 </button>

@@ -15,7 +15,7 @@ const ComicCard = ({ comic }: ComicCardProps) => {
           width={161}
           height={242}
           alt="thumbnail"
-          className="w-[161px] h-[242px] object-cover"
+          className="comic-thumbnail"
         />
         <h2 className="font-bold text-[15px] line-clamp-2">{comic.title}</h2>
       </div>

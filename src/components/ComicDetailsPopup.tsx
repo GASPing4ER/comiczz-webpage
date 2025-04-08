@@ -10,16 +10,14 @@ type ComicDetailsPopupProps = {
 const ComicDetailsPopup = ({ comic }: ComicDetailsPopupProps) => {
   return (
     <Dialog>
-      <DialogTrigger className="bg-[#DD2C2C] text-white font-bold text-[17px] p-[5px] rounded-[5px] w-full cursor-pointer">
-        More info
-      </DialogTrigger>
+      <DialogTrigger className="comic-button w-full">More info</DialogTrigger>
       <DialogContent className="bg-white w-[643px] min-h-[270px] flex gap-[17px]">
         <Image
           src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
           width={161}
           height={242}
           alt="thumbnail"
-          className="w-[161px] h-[242px] object-cover -ml-2 self-center"
+          className="comic-thumbnail -ml-2 self-center"
         />
         <div className="w-full flex flex-col justify-between gap-2">
           <DialogTitle className="text-[17px] font-bold">
@@ -69,9 +67,7 @@ const ComicDetailsPopup = ({ comic }: ComicDetailsPopupProps) => {
             <p className="text-[19px] font-bold">
               {getLowestPrice(comic.prices)} €
             </p>
-            <button className="bg-[#DD2C2C] text-white p-[5px] w-[140px] rounded-[5px] font-bold text-[17px]">
-              Close
-            </button>
+            <button className="comic-button w-[140px]">Close</button>
           </div>
         </div>
       </DialogContent>
