@@ -10,7 +10,7 @@
 
 ## Install:
 
-- Pull this repository.
+- Clone this repository.
 - In terminal run npm install
 - Afterwards run npm run dev
 - Keep in mind that you need .env and inside it NEXT_PUBLIC_API_PUBLIC_KEY from Marvel
