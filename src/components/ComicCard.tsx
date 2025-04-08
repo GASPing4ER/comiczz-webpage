@@ -1,98 +1,32 @@
 import { IFComic } from "@/types/marvel";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 import Image from "next/image";
-import { getLowestPrice, getReleaseYear } from "@/lib/utils";
+import { ComicDetailsPopup } from "@/components";
+import { getLowestPrice } from "@/lib/utils";
 
-type ComicDetailsPopupProps = {
+type ComicCardProps = {
   comic: IFComic;
 };
-
-const ComicDetailsPopup = ({ comic }: ComicDetailsPopupProps) => {
-  const {
-    thumbnail,
-    title,
-    dates,
-    format,
-    pageCount,
-    characters,
-    creators,
-    diamondCode,
-    prices,
-  } = comic;
-
-  const renderListItems = (items: { name: string }[], label: string) => {
-    if (items.length === 0) return null;
-
-    return (
-      <p className="line-clamp-1">
-        <strong>{label}: </strong>
-        {items.map((item, i) => (
-          <span key={item.name}>
-            {item.name}
-            {i < items.length - 1 ? ", " : ""}
-          </span>
-        ))}
-      </p>
-    );
-  };
-
+const ComicCard = ({ comic }: ComicCardProps) => {
   return (
-    <Dialog>
-      <DialogTrigger className="comic-button w-full">More info</DialogTrigger>
-      <DialogContent className="bg-white w-[643px] min-h-[270px] flex gap-4 p-6">
-        <div className="flex-shrink-0 -ml-2 self-center">
-          <Image
-            src={`${thumbnail.path}.${thumbnail.extension}`}
-            width={161}
-            height={242}
-            alt={`Cover of ${title}`}
-            className="comic-thumbnail"
-          />
-        </div>
-
-        <div className="flex flex-col justify-between flex-grow gap-4">
-          <div>
-            <DialogTitle className="text-lg font-bold mb-4">
-              {title}
-            </DialogTitle>
-
-            <div className="text-sm space-y-2">
-              <DetailItem
-                label="Year of release"
-                value={getReleaseYear(dates)}
-              />
-              {format && <DetailItem label="Format" value={format} />}
-              <DetailItem label="Pages" value={pageCount} />
-              {renderListItems(characters.items, "Characters")}
-              {renderListItems(creators.items, "Creators")}
-              {diamondCode && (
-                <DetailItem label="Diamond Code" value={diamondCode} />
-              )}
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center mt-4">
-            <span className="text-lg font-bold">
-              {getLowestPrice(prices)} €
-            </span>
-            <button className="comic-button w-[140px]">Close</button>
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <div className="w-[207px] h-[395px] border-2 border-black rounded-[5px] flex flex-col items-center justify-between py-[12px] px-[21px] text-center">
+      <div className="flex flex-col gap-[9px]">
+        <Image
+          src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+          width={161}
+          height={242}
+          alt="thumbnail"
+          className="comic-thumbnail"
+        />
+        <h2 className="font-bold text-[15px] line-clamp-2">{comic.title}</h2>
+      </div>
+      <div className="flex flex-col gap-[9px] w-full">
+        <p className="text-[19px] font-bold">
+          {getLowestPrice(comic.prices)} €
+        </p>
+        <ComicDetailsPopup comic={comic} />
+      </div>
+    </div>
   );
 };
 
-type DetailsItemsProps = {
-  label: string;
-  value?: string | number;
-};
-
-const DetailItem = ({ label, value }: DetailsItemsProps) =>
-  value ? (
-    <p>
-      <strong>{label}:</strong> {value}
-    </p>
-  ) : null;
-
-export default ComicDetailsPopup;
+export default ComicCard;
