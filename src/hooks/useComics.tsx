@@ -50,7 +50,6 @@ const useComics = (format: string) => {
 
     getComics();
   }, [format]);
-
   return {
     comics,
     loading,
