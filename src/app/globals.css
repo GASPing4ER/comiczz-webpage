@@ -1,11 +1,24 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 body {
   font-family: var(--font-quicksand), sans-serif;
 }
 
 @layer base {
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .comic-thumbnail {
+    @apply w-[161px] h-[242px] object-cover;
+  }
+  .comic-button {
+    @apply bg-[#DD2C2C] p-[5px] text-[17px] text-white font-bold rounded-[5px];
+  }
+  .nav-item {
+    @apply cursor-pointer text-[18px] font-bold hover:text-[#DD2C2C];
+  }
 }
