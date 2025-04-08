@@ -4,15 +4,34 @@ import { FORMATS } from "@/constants";
 import { useFilter } from "@/hooks/useFilter";
 import Image from "next/image";
 import clsx from "clsx";
+import { useState } from "react";
+import { MobileSidebar } from "@/components";
+import { MenuIcon } from "lucide-react";
 
 const Header = () => {
   const { format: activeFormat, setFormat } = useFilter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
 
   return (
-    <header className="bg-black text-white py-[23px] px-[250px]">
+    <header className="bg-black text-white py-[23px] px-[20px] lg:px-[250px] relative">
       <div className="flex items-center justify-between">
         <Image src="/logo.svg" width={84} height={72} alt="comiczz logo" />
-        <nav>
+
+        {/* Hamburger icon for mobile */}
+        <button
+          className="lg:hidden text-white"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle navigation menu"
+        >
+          <MenuIcon />
+        </button>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:block">
           <ul className="flex space-x-12">
             {FORMATS.map((format) => (
               <li key={format.value}>
@@ -31,6 +50,9 @@ const Header = () => {
           </ul>
         </nav>
       </div>
+
+      {/* Mobile Sidebar */}
+      <MobileSidebar isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
     </header>
   );
 };

@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto py-8 flex flex-col gap-[23px]">
-      <p className="text-[#828282] font-bold text-[18px]">
+      <p className="text-[#828282] font-bold text-[18px] ml-2">
         Home &gt;{" "}
         {`${FORMATS.find((f) => f.value === format)?.label}${
           format !== "" ? "s" : ""
