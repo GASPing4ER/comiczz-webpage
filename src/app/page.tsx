@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto py-8 flex flex-col gap-[23px]">
-      <p className="text-[#828282] font-bold text-[18px] -ml-10">
+      <p className="text-[#828282] font-bold text-[18px]">
         Home &gt;{" "}
         {`${FORMATS.find((f) => f.value === format)?.label}${
           format !== "" ? "s" : ""
@@ -82,7 +82,7 @@ export default function Home() {
       {/* Comics Grid */}
       {comics.length > 0 && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {comics.map((comic) => (
               <ComicCard key={comic.id} comic={comic} />
             ))}
